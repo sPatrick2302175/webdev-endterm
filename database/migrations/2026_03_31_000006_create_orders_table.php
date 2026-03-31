@@ -12,13 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id(); 
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
-            $table->string('status')->default('pending');
-            $table->timestamps();
+            $table->string('email');
+            $table->string('shipped_to');
+            $table->enum('status', ['pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled', 'refunded', 'failed'])->default('pending');
+            $table->decimal('total_price', 8, 2)->unsigned();
+            $table->timestamp('ordered_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
-
     /**
      * Reverse the migrations.
      */

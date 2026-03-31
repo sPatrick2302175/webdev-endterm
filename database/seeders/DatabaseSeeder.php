@@ -18,8 +18,13 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'first_name'        => 'Test',
+            'last_name'         => 'User',
+            'email'             => 'test@example.com',
+            'password'          => bcrypt('password'), // Or 'password' if using 'hashed' cast
+            'instagram_account' => '@test_user',
+            'address'           => '123 Laravel St.',
+            'role'              => 'admin',
         ]);
 
         $this->call([
@@ -29,6 +34,7 @@ class DatabaseSeeder extends Seeder
             OrderSeeder::class,
             OrderItemSeeder::class,
             CartItemSeeder::class,
+            CartSeeder::class,
         ]);
     }
 }

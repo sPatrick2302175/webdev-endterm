@@ -13,21 +13,22 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+
+    const UPDATED_AT = null;
     /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
      */
     protected $fillable = [
-        'id',
         'first_name',
         'last_name',
-        'email_account',
-        'password_hash',
+        'email',
+        'password',
         'instagram_account',
         'address',
         'role',
-        'created_at',
+        
     ];
 
     /**
